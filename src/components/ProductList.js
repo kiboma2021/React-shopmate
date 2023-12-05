@@ -4,8 +4,12 @@ export default function ProductList() {
 
   const [products, setProducts] = useState([]);
   const [toggle, setToggle] = useState(true);
+  const [productName, setProductName] = useState("");
+  const [productPrice, setProductPrice] = useState("");
 
-  console.log(products)
+  const output = {
+    color: 'red',
+  }
 
   useEffect(() =>{
     fetch('http://localhost:8000/products/')
@@ -16,13 +20,37 @@ export default function ProductList() {
   function handleDelete(id){
     setProducts(products.filter(product => product.id != id));
   }
+
+  function handleName(e){
+    setProductName(e.target.value);
+  }
+
+  function handlePrice(e){
+    setProductPrice(e.target.value);
+  }
+
+  function handleReset(){
+    setProductName("");
+    setProductPrice("");
+  }
+
   return (
     <>
       <div className='toggle'>
         <button onClick={()=> setToggle(!toggle)} >{toggle?"Hide Products":"Show products"}</button>
       </div>
+      <form>
+        <input onChange={handleName} type="text" placeholder='Product Name' value={productName} />
+        <input onChange={handlePrice} type="text" placeholder='Price' value={productPrice} />
+        <span onClick={handleReset} className='reset-btn'>Reset Input</span>
+        <button className='form-btn'>Add Product</button>
+      </form>
       <div>
-      <table>
+        <h2>Product Name: <span style={output}>{productName} </span></h2>
+        <h2>Product Price: <span style={output}>{productPrice} </span></h2>
+      </div>
+      <div>
+        <table>
           <thead>
             <tr>
               <th>#</th>
