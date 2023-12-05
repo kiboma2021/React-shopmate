@@ -65,7 +65,8 @@ form {
 
 input,
 .form-btn,
-.reset-btn {
+.reset-btn,
+select {
   padding: 1rem;
   margin: 1rem;
   border: none;

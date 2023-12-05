@@ -7,6 +7,8 @@ export default function ProductList() {
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
 
+  const stock_status = useRef(false);
+
   const output = {
     color: 'red',
   }
@@ -32,16 +34,34 @@ export default function ProductList() {
   function handleReset(){
     setProductName("");
     setProductPrice("");
+    stock_status.current.value=false;
   }
+
+  function handleSubmit(){
+    const ref_id = Math.floor(Math.random()*10000)
+    const product = {
+      id: ref_id,
+      name: productName,
+      price: productPrice,
+      in_stock: stock_status.current.value === "true"
+    }
+
+    setProducts([product]);
+  }
+
 
   return (
     <>
       <div className='toggle'>
         <button onClick={()=> setToggle(!toggle)} >{toggle?"Hide Products":"Show products"}</button>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input onChange={handleName} type="text" placeholder='Product Name' value={productName} />
         <input onChange={handlePrice} type="text" placeholder='Price' value={productPrice} />
+        <select ref={stock_status}>
+          <option value="true"> In Stock</option>
+          <option value="false">Out of Stock</option>
+        </select>
         <span onClick={handleReset} className='reset-btn'>Reset Input</span>
         <button className='form-btn'>Add Product</button>
       </form>
