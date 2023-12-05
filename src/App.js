@@ -1,9 +1,13 @@
-import './App.css';
+import './App.css'
+import ProductList from "./components/ProductList";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div className="App">
-      <h2>Shopmate App</h2>
+      <Header />
+      <ProductList />
+
     </div>
   );
 }
