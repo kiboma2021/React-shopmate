@@ -26,3 +26,12 @@ th, td {
   margin: 2rem;
   padding: 2rem;
 }
+
+.in_stock {
+  background-color: rgb(145, 176, 97);
+}
+
+.outof_stock {
+  background-color: green;
+  color: rgb(143, 7, 7);
+}

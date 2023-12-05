@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 export default function ProductList() {
 
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
+  const [toggle, setToggle] = useState(true);
 
   console.log(products)
 
@@ -24,8 +25,8 @@ export default function ProductList() {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => 
-            <tr key={product.id}>
+            {toggle && products.map((product) => 
+            <tr key={product.id} className={product.in_stock?"in_stock":"outof_stock"}>
               <td>{product.id} </td>
               <td>{product.name} </td>
               <td>{product.price} </td>
