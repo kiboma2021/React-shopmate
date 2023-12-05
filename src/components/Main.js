@@ -1,9 +1,9 @@
 import React from 'react'
-
+import ProductList from './ProductList'
 const Main = () => {
   return (
     <section className='main'>
-        <h2>main page</h2>
+       <ProductList />
       
     </section>
   )
