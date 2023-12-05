@@ -16,3 +16,13 @@ ul > li {
   justify-content: center;
   align-items: center;
 }
+
+table {
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  margin: 2rem;
+  padding: 2rem;
+}

@@ -14,6 +14,26 @@ export default function ProductList() {
   return (
     <div>
         <h2>Product List</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((product) => 
+            <tr key={product.id}>
+              <td>{product.id} </td>
+              <td>{product.name} </td>
+              <td>{product.price} </td>
+              <td> </td>
+            </tr>
+            )}
+          </tbody>
+        </table>
       
     </div>
   )
