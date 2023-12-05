@@ -11,7 +11,11 @@ export default function ProductList() {
     fetch('http://localhost:8000/products/')
     .then((response) =>response.json())
     .then((data) => setProducts(data))
-  },[])
+  },[]);
+
+  function handleDelete(id){
+    setProducts(products.filter(product => product.id != id));
+  }
   return (
     <>
       <div className='toggle'>
@@ -24,7 +28,7 @@ export default function ProductList() {
               <th>#</th>
               <th>Name</th>
               <th>Price</th>
-              <th>Delete</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -33,7 +37,7 @@ export default function ProductList() {
               <td>{product.id} </td>
               <td>{product.name} </td>
               <td>{product.price} </td>
-              <td> </td>
+              <td><span onClick={()=>handleDelete(product.id)} className='delete-btn'>Delete</span> </td>
             </tr>
             )}
           </tbody>

@@ -25,6 +25,7 @@ th, td {
   border: 1px solid #ccc;
   margin: 2rem;
   padding: 2rem;
+  text-align: center;
 }
 
 .in_stock {
@@ -51,4 +52,11 @@ th, td {
   background-color: blue;
   color: white;
   font-size: larger;
+}
+
+.delete-btn {
+  background-color: rgba(243, 35, 35, 0.901);
+  padding: 0.7rem;
+  color: white;
+  border-radius: 1rem;
 }
