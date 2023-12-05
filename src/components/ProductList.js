@@ -6,6 +6,7 @@ export default function ProductList() {
   const [toggle, setToggle] = useState(true);
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
+  const [url, setUrl] = useState("http://localhost:8000/products/");
 
   const stock_status = useRef(false);
 
@@ -14,10 +15,10 @@ export default function ProductList() {
   }
 
   useEffect(() =>{
-    fetch('http://localhost:8000/products/')
+    fetch(url)
     .then((response) =>response.json())
     .then((data) => setProducts(data))
-  },[]);
+  },[url]);
 
   function handleDelete(id){
     setProducts(products.filter(product => product.id != id));
@@ -68,6 +69,10 @@ export default function ProductList() {
       <div>
         <h2>Product Name: <span style={output}>{productName} </span></h2>
         <h2>Product Price: <span style={output}>{productPrice} </span></h2>
+      </div>
+      <div className='filter-btns'>
+        <button onClick={()=> setUrl("http://localhost:8000/products/")}>All Products</button>
+        <button onClick={()=> setUrl("http://localhost:8000/products?in_stock=true")}>In Stock</button>
       </div>
       <div>
         <table>

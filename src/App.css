@@ -38,7 +38,8 @@ th, td {
 }
 
 .toggle,
-form {
+form,
+.filter-btns {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,7 +48,6 @@ form {
 
 .toggle > button {
   width: 30%;
-
   padding: 1rem;
   border: none;
   border-radius: 5rem;
@@ -82,4 +82,10 @@ select {
 .form-btn {
   background-color: purple;
   color: white;
+}
+
+.filter-btns > button {
+  margin-right: 1rem;
+  padding: 0.6rem;
+  border: none;
 }
