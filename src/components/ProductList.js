@@ -13,9 +13,12 @@ export default function ProductList() {
     .then((data) => setProducts(data))
   },[])
   return (
-    <div>
-        <h2>Product List</h2>
-        <table>
+    <>
+      <div className='toggle'>
+        <button onClick={()=> setToggle(!toggle)} >{toggle?"Hide Products":"Show products"}</button>
+      </div>
+      <div>
+      <table>
           <thead>
             <tr>
               <th>#</th>
@@ -35,7 +38,7 @@ export default function ProductList() {
             )}
           </tbody>
         </table>
-      
-    </div>
+      </div>
+    </>
   )
 }

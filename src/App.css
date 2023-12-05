@@ -35,3 +35,20 @@ th, td {
   background-color: green;
   color: rgb(143, 7, 7);
 }
+
+.toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggle > button {
+  width: 30%;
+  margin: 2rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 5rem;
+  background-color: blue;
+  color: white;
+  font-size: larger;
+}
