@@ -1,0 +1,33 @@
+{
+    "products": [
+        {
+        "id": 1236,
+        "name": "Sugar",
+        "price": 124,
+        "in_stock": true
+    },
+    {
+        "id": 1237,
+        "name": "Drinking chocolate",
+        "price": 99,
+        "in_stock": false
+    },
+    {
+        "id": 1238,
+        "name": "Clothes",
+        "price": 265,
+        "in_stock": true
+    },
+    {
+        "id": 1239,
+        "name": "Kitchen items",
+        "price": 20,
+        "in_stock": true
+    },
+    {
+        "id": 1240,
+        "name": "Laptop",
+        "price": 1452,
+        "in_stock": false
+    }
+]}
