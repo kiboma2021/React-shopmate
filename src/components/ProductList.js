@@ -14,11 +14,16 @@ export default function ProductList() {
     color: 'red',
   }
 
+  const fetchProducts = async () => {
+    const response = await fetch(url);
+    const data = await response.json();
+    setProducts(data);
+  }
+
   useEffect(() =>{
-    fetch(url)
-    .then((response) =>response.json())
-    .then((data) => setProducts(data))
-  },[url]);
+    fetchProducts();
+    console.log("--------------------------------")
+  },[]);
 
   function handleDelete(id){
     setProducts(products.filter(product => product.id != id));
