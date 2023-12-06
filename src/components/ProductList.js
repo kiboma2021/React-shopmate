@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import useFetch from '../hooks/useFetch';
 
 export default function ProductList() {
 
-  const [products, setProducts] = useState([]);
+  //const [products, setProducts] = useState([])   ;
   const [toggle, setToggle] = useState(true);
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [url, setUrl] = useState("http://localhost:8000/products/");
+  const {data: products} = useFetch(url)
 
   const stock_status = useRef(false);
 
@@ -14,20 +16,20 @@ export default function ProductList() {
     color: 'red',
   }
 
-  const fetchProducts = useCallback(
-    async () => {
-      const response = await fetch(url);
-      const data = await response.json();
-      setProducts(data);
-    },[url])
-  useEffect(() =>{
-    fetchProducts();
-    console.log("--------------------------------")
-  },[fetchProducts]);
+  // const fetchProducts = useCallback(
+  //   async () => {
+  //     const response = await fetch(url);
+  //     const data = await response.json();
+  //     setProducts(data);
+  //   },[url])
+  // useEffect(() =>{
+  //   fetchProducts();
+  //   console.log("--------------------------------")
+  // },[fetchProducts]);
 
-  function handleDelete(id){
-    setProducts(products.filter(product => product.id != id));
-  }
+  // function handleDelete(id){
+  //   setProducts(products.filter(product => product.id != id));
+  // }
 
   function handleName(e){
     setProductName(e.target.value);
@@ -43,25 +45,13 @@ export default function ProductList() {
     stock_status.current.value=false;
   }
 
-  function handleSubmit(){
-    const ref_id = Math.floor(Math.random()*10000)
-    const product = {
-      id: ref_id,
-      name: productName,
-      price: productPrice,
-      in_stock: stock_status.current.value === "true"
-    }
-
-    setProducts([product]);
-  }
-
 
   return (
     <>
       <div className='toggle'>
         <button onClick={()=> setToggle(!toggle)} >{toggle?"Hide Products":"Show products"}</button>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <input onChange={handleName} type="text" placeholder='Product Name' value={productName} />
         <input onChange={handlePrice} type="text" placeholder='Price' value={productPrice} />
         <select ref={stock_status}>
@@ -90,12 +80,12 @@ export default function ProductList() {
             </tr>
           </thead>
           <tbody>
-            {toggle && products.map((product) => 
+            {toggle && products && products.map((product) => 
             <tr key={product.id} className={product.in_stock?"in_stock":"outof_stock"}>
               <td>{product.id} </td>
               <td>{product.name} </td>
               <td>{product.price} </td>
-              <td><span onClick={()=>handleDelete(product.id)} className='delete-btn'>Delete</span> </td>
+              <td><span className='delete-btn'>Delete</span> </td>
             </tr>
             )}
           </tbody>
