@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 
 export default function ProductList() {
 
@@ -14,16 +14,16 @@ export default function ProductList() {
     color: 'red',
   }
 
-  const fetchProducts = async () => {
-    const response = await fetch(url);
-    const data = await response.json();
-    setProducts(data);
-  }
-
+  const fetchProducts = useCallback(
+    async () => {
+      const response = await fetch(url);
+      const data = await response.json();
+      setProducts(data);
+    },[url])
   useEffect(() =>{
     fetchProducts();
     console.log("--------------------------------")
-  },[]);
+  },[fetchProducts]);
 
   function handleDelete(id){
     setProducts(products.filter(product => product.id != id));
